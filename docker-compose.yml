@@ -8,6 +8,7 @@ web:
   image: mquandalle/wekan
   environment:
     - MONGO_URL=mongodb://db:27017/meteor
+    - ROOT_URL
   links:
     - db:db
   volumes:
