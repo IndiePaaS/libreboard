@@ -10,6 +10,7 @@ web:
     - MONGO_URL=mongodb://db:27017/meteor
     - ROOT_URL
     - MAIL_URL
+    - DELAY=30
   links:
     - db:db
   volumes:
