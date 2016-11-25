@@ -1,17 +1,29 @@
-db:
-  image: mongo
-  volumes:
-    - ./data/runtime/db:/data/db
-    - ./data/dump:/dump
-  command: mongod --smallfiles
-web:
-  image: mquandalle/wekan
-  environment:
-    - MONGO_URL=mongodb://db:27017/meteor
-    - ROOT_URL
-    - MAIL_URL
-    - DELAY=30
-  links:
-    - db:db
-  volumes:
-    - ./logs:/home/app/logs
+version: '2'
+networks:
+  lb_web:
+    external: true
+  back:
+    driver: bridge
+services:
+  db:
+    image: mongo
+    volumes:
+      - ./data/runtime/db:/data/db
+      - ./data/dump:/dump
+    command: mongod --smallfiles
+    networks:
+    - lb_web
+  web:
+    image: mquandalle/wekan
+    environment:
+      - MONGO_URL=mongodb://db:27017/meteor
+      - ROOT_URL
+      - MAIL_URL
+      - DELAY=30
+    links:
+      - db:db
+    volumes:
+      - ./logs:/home/app/logs
+    networks:
+    - back
+    - lb_web
