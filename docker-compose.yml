@@ -20,6 +20,8 @@ services:
       - ROOT_URL
       - MAIL_URL
       - DELAY=30
+    env_file:
+      - ./env
     links:
       - db:db
     volumes:
