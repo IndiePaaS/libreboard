@@ -20,8 +20,8 @@ services:
     - VIRTUAL_HOST
     - ROOT_URL
     - MAIL_URL
-    links:
-      - db:db
+    depends:
+    - db
     volumes:
     - ./logs:/home/app/logs
     networks:
