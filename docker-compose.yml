@@ -12,7 +12,7 @@ services:
       - ./data/dump:/dump
     command: mongod --smallfiles
     networks:
-    - lb_web
+    - back
   web:
     image: mquandalle/wekan
     entrypoint: "/bin/bash -c 'sleep 10 && node /build/main.js'"
