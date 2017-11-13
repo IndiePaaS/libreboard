@@ -15,15 +15,11 @@ services:
     - back
   web:
     image: mquandalle/wekan
-    entrypoint: "/bin/bash -c 'sleep 10 && node /build/main.js'"
     environment:
       - MONGO_URL=mongodb://db:27017/meteor
       - VIRTUAL_HOST
       - ROOT_URL
       - MAIL_URL
-      - DELAY=30
-    env_file:
-      - ./env
     links:
       - db:db
     volumes:
