@@ -8,22 +8,22 @@ services:
   db:
     image: mongo
     volumes:
-      - ./data/runtime/db:/data/db
-      - ./data/dump:/dump
+    - ./data/runtime/db:/data/db
+    - ./data/dump:/dump
     command: mongod --smallfiles
     networks:
     - back
   web:
     image: mquandalle/wekan
     environment:
-      - MONGO_URL=mongodb://db:27017/meteor
-      - VIRTUAL_HOST
-      - ROOT_URL
-      - MAIL_URL
+    - MONGO_URL=mongodb://db:27017/meteor
+    - VIRTUAL_HOST
+    - ROOT_URL
+    - MAIL_URL
     links:
       - db:db
     volumes:
-      - ./logs:/home/app/logs
+    - ./logs:/home/app/logs
     networks:
     - back
     - lb_web
