@@ -20,7 +20,7 @@ services:
     - VIRTUAL_HOST
     - ROOT_URL
     - MAIL_URL
-    depends:
+    depends_on:
     - db
     volumes:
     - ./logs:/home/app/logs
