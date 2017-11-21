@@ -27,3 +27,4 @@ services:
     networks:
     - back
     - lb_web
+    restart: always
